@@ -28,13 +28,18 @@ Plugin 'w0rp/ale'
 Plugin 'vim-airline/vim-airline'
 Plugin 'tpope/vim-surround'
 Plugin 'terryma/vim-multiple-cursors'
+Plugin 'shawncplus/phpcomplete.vim'
+Plugin 'honza/vim-snippets'
+Plugin 'SirVer/ultisnips'
 "linters"
-Plugin 'vim-syntastic/syntastic'
+"Plugin 'stephpy/vim-php-cs-fixer'
+"Plugin 'vim-scripts/phpcs.vim'
+"Plugin 'vim-syntastic/syntastic'
+
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
-
 
 "params"
 syntax on
@@ -42,14 +47,14 @@ colorscheme gruvbox
 set background=dark
 set number
 set expandtab
-set tabstop=2
+set tabstop=4
 set hlsearch
 set incsearch
 set expandtab
-set shiftwidth=2
-set softtabstop=2
+set shiftwidth=4
+set softtabstop=4
+
 " tab size for not expanded files
-set tabstop=2
 let g:indentLine_color_term = 239
 let g:indentLine_conceallevel = 2
 let g:indentLine_faster = 0
@@ -58,15 +63,15 @@ let g:mapleader=','
 let g:jsx_pragma_required = 0 
 
 " *** ale config
-let g:ale_emit_conflict_warnings = 0
+let g:ale_emit_conflict_warnings = 1
 let g:ale_fixers = {
       \   'javascript': ['eslint'],
-      \   'ruby': ['rubocop']
+      \   'php': ['phpcs'],
       \}
 
 let g:ale_linters = {
       \   'javascript': ['eslint'],
-      \   'ruby': ['rubocop']
+      \   'php': ['phpcs'],
       \}
 let g:airline#extensions#ale#enabled = 1
 let g:ale_set_highlights = 0
@@ -85,9 +90,14 @@ set wildignore+=*/node_modules/**
 set wildignore+=public/**
 set wildignore+=*/tmp/*,*/log/*,*.so,*.swp,*.zip,moc_*.cpp,moc_*.h,ui_*.cpp,ui_*.h
 
-"js standart
-"autocmd bufwritepost *.js silent !standard --fix %
-"set autoread
+
+let g:UltiSnipsExpandTrigger="<c-j>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:UltiSnipsEditSplit="vertical"
+
+"Snipets end ***********"
+
 "****************"
 let mapleader = "\<Space>"
 map <Leader>n :NERDTreeToggle<CR>
@@ -96,5 +106,5 @@ nmap <Leader>f <Plug>(easymotion-overwin-f)
 nmap <Leader> :echo "noh"
 
 "*****************END MAPPING ************
-" ******************************* COLOR SCHEME START ****************
+
 
