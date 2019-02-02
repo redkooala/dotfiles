@@ -31,10 +31,8 @@ Plugin 'terryma/vim-multiple-cursors'
 Plugin 'shawncplus/phpcomplete.vim'
 Plugin 'honza/vim-snippets'
 Plugin 'SirVer/ultisnips'
+Plugin 'arnaud-lb/vim-php-namespace'
 "linters"
-"Plugin 'stephpy/vim-php-cs-fixer'
-"Plugin 'vim-scripts/phpcs.vim'
-"Plugin 'vim-syntastic/syntastic'
 
 
 " All of your Plugins must be added before the following line
@@ -106,5 +104,15 @@ nmap <Leader>f <Plug>(easymotion-overwin-f)
 nmap <Leader> :echo "noh"
 
 "*****************END MAPPING ************
+
+"PHP AUTOCOMPLETE FUCTIONS"
+"function! IPhpInsertUse()
+    call PhpInsertUse()
+    call feedkeys('a',  'n')
+endfunction
+autocmd FileType php inoremap <Leader>u <Esc>:call IPhpInsertUse()<CR>
+autocmd FileType php noremap <Leader>u :call PhpInsertUse()<CR>
+set tags+=tags,tags.vendors
+
 
 
