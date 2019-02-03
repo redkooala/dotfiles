@@ -106,7 +106,7 @@ nmap <Leader> :echo "noh"
 "*****************END MAPPING ************
 
 "PHP AUTOCOMPLETE FUCTIONS"
-"function! IPhpInsertUse()
+function! IPhpInsertUse()
     call PhpInsertUse()
     call feedkeys('a',  'n')
 endfunction
