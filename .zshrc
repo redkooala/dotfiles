@@ -1,16 +1,14 @@
-#CORE
-export ZSH="/home/orangesan/.oh-my-zsh"
+# Path to your oh-my-zsh installation.
+  export ZSH="/home/orangesan/.oh-my-zsh"
 
-#THEME
-ZSH_THEME="bureau"
+ZSH_THEME="robbyrussell"
 
-##PLUGINS
-#plugins=(git)
+### set plugins
+plugins=(git)
 
-##SOURCE
+## user settings
 source $ZSH/oh-my-zsh.sh
-
-#### USER SETTINGS ####
 export TERM='xterm-256color'
 echo -ne '\e]12;#ff0000\a'
 gsettings set org.gnome.desktop.interface cursor-blink false
+
