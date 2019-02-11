@@ -12,3 +12,5 @@ export TERM='xterm-256color'
 echo -ne '\e]12;#ff0000\a'
 gsettings set org.gnome.desktop.interface cursor-blink false
 
+###alices
+alias front_test='make restart && make test without_debug=1 with_assets_build=0 with_apidoc_build=0 test_frontend_suite=1 fail_exit=1'
