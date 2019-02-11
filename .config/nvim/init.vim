@@ -1,4 +1,4 @@
-"pgugins"
+""pgugins"
 set nocompatible              " be iMproved, required
 filetype off                  " required
 " set the runtime path to include Vundle and initialize
@@ -32,11 +32,15 @@ Plugin 'SirVer/ultisnips'
 Plugin 'w0rp/ale'
 
 "*************Autocomplete Plugins
-Plugin 'Valloric/YouCompleteMe'
+"Plugin 'Valloric/YouCompleteMe'
 Plugin 'phpactor/phpactor'
+Plugin 'phpactor/ncm2-phpactor'
 Plugin 'shawncplus/phpcomplete.vim'
-"Plugin 'arnaud-lb/vim-php-namespace'
-
+"ncm2"
+Plugin 'ncm2/ncm2'
+Plugin 'roxma/nvim-yarp'
+Plugin 'ncm2/ncm2-bufword'
+Plugin 'ncm2/ncm2-path'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -108,17 +112,13 @@ nmap <Leader>q :echo "noh"
 
 "*****************END MAPPING ************
 
-"PHP AUTOCOMPLETE FUCTIONS"
-function! IPhpInsertUse()
-    call PhpInsertUse()
-    call feedkeys('a',  'n')
-endfunction
-autocmd FileType php inoremap <Leader>u <Esc>:call IPhpInsertUse()<CR>
-autocmd FileType php noremap <Leader>u :call PhpInsertUse()<CR>
 autocmd FileType php setlocal omnifunc=phpactor#Complete
-""nmap <C-]> :call phpactor#GotoDefinition()<CR>
-
-
+nmap <C-]> :call phpactor#GotoDefinition()<CR>
+"ncm2"
+autocmd BufEnter * call ncm2#enable_for_buffer()
+set completeopt=noinsert,menuone,noselect
+"deoplete"
+"let g:deoplete#enable_at_startup = 1
 
 "#### TAGS ####"
 set tags+=tags,tags.vendors

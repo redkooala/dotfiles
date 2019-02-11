@@ -1,4 +1,4 @@
-"pgugins"
+""pgugins"
 set nocompatible              " be iMproved, required
 filetype off                  " required
 " set the runtime path to include Vundle and initialize
@@ -32,10 +32,24 @@ Plugin 'SirVer/ultisnips'
 Plugin 'w0rp/ale'
 
 "*************Autocomplete Plugins
-Plugin 'Valloric/YouCompleteMe'
+"Plugin 'Valloric/YouCompleteMe'
+"Plugin 'arnaud-lb/vim-php-namespace'
 Plugin 'phpactor/phpactor'
 Plugin 'shawncplus/phpcomplete.vim'
-"Plugin 'arnaud-lb/vim-php-namespace'
+"ncm2"
+Plugin 'ncm2/ncm2'
+Plugin 'roxma/nvim-yarp'
+Plugin 'ncm2/ncm2-bufword'
+Plugin 'ncm2/ncm2-path'
+"if has('nvim')
+  "Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+"else
+  "Plug 'Shougo/deoplete.nvim'
+  "Plug 'roxma/nvim-yarp'
+  "Plug 'roxma/vim-hug-neovim-rpc'
+"endif
+
+
 
 
 " All of your Plugins must be added before the following line
@@ -117,12 +131,11 @@ autocmd FileType php inoremap <Leader>u <Esc>:call IPhpInsertUse()<CR>
 autocmd FileType php noremap <Leader>u :call PhpInsertUse()<CR>
 autocmd FileType php setlocal omnifunc=phpactor#Complete
 ""nmap <C-]> :call phpactor#GotoDefinition()<CR>
-
-
+"ncm2"
+autocmd BufEnter * call ncm2#enable_for_buffer()
+set completeopt=noinsert,menuone,noselect
+"deoplete"
+"let g:deoplete#enable_at_startup = 1
 
 "#### TAGS ####"
 set tags+=tags,tags.vendors
-
-
-"orfography"
-set spell spelllang=ru
