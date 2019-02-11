@@ -7,7 +7,6 @@ call vundle#begin()
   
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
-Plugin 'Valloric/YouCompleteMe'
 Plugin 'vim-ruby/vim-ruby'
 
 "colorshemes"
@@ -24,15 +23,19 @@ Plugin 'slim-template/vim-slim'
 Plugin 'pangloss/vim-javascript' 
 Plugin 'mxw/vim-jsx' 
 Plugin 'scrooloose/nerdcommenter'
-Plugin 'w0rp/ale'
 Plugin 'vim-airline/vim-airline'
 Plugin 'tpope/vim-surround'
 Plugin 'terryma/vim-multiple-cursors'
-Plugin 'shawncplus/phpcomplete.vim'
 Plugin 'honza/vim-snippets'
 Plugin 'SirVer/ultisnips'
-Plugin 'arnaud-lb/vim-php-namespace'
 "linters"
+Plugin 'w0rp/ale'
+
+"*************Autocomplete Plugins
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'phpactor/phpactor'
+Plugin 'shawncplus/phpcomplete.vim'
+"Plugin 'arnaud-lb/vim-php-namespace'
 
 
 " All of your Plugins must be added before the following line
@@ -88,7 +91,7 @@ set wildignore+=*/node_modules/**
 set wildignore+=public/**
 set wildignore+=*/tmp/*,*/log/*,*.so,*.swp,*.zip,moc_*.cpp,moc_*.h,ui_*.cpp,ui_*.h
 
-
+"#### SNIPET ####"
 let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
@@ -101,7 +104,7 @@ let mapleader = "\<Space>"
 map <Leader>n :NERDTreeToggle<CR>
 map <Leader>p :NERDTreeFind<cr>
 nmap <Leader>f <Plug>(easymotion-overwin-f)
-nmap <Leader> :echo "noh"
+nmap <Leader>q :echo "noh"
 
 "*****************END MAPPING ************
 
@@ -112,7 +115,10 @@ function! IPhpInsertUse()
 endfunction
 autocmd FileType php inoremap <Leader>u <Esc>:call IPhpInsertUse()<CR>
 autocmd FileType php noremap <Leader>u :call PhpInsertUse()<CR>
+autocmd FileType php setlocal omnifunc=phpactor#Complete
+""nmap <C-]> :call phpactor#GotoDefinition()<CR>
+
+
+
+"#### TAGS ####"
 set tags+=tags,tags.vendors
-
-
-
