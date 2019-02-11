@@ -122,3 +122,7 @@ autocmd FileType php setlocal omnifunc=phpactor#Complete
 
 "#### TAGS ####"
 set tags+=tags,tags.vendors
+
+
+"orfography"
+set spell spelllang=ru
