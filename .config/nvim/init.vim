@@ -36,8 +36,8 @@ Plugin 'SirVer/ultisnips'
 Plugin 'w0rp/ale'
 
 "AUTOCOMPLETE TODO
-Plugin 'phpactor/phpactor'
-Plugin 'phpactor/ncm2-phpactor'
+"Plugin 'phpactor/phpactor'
+"Plugin 'phpactor/ncm2-phpactor'
 
 Plugin 'ncm2/ncm2'
 Plugin 'roxma/nvim-yarp'
