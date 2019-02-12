@@ -35,15 +35,24 @@ Plugin 'SirVer/ultisnips'
 "LINTERS"
 Plugin 'w0rp/ale'
 
-"AUTOCOMPLETE
+"AUTOCOMPLETE TODO
 Plugin 'phpactor/phpactor'
 Plugin 'phpactor/ncm2-phpactor'
-Plugin 'shawncplus/phpcomplete.vim'
+
 Plugin 'ncm2/ncm2'
 Plugin 'roxma/nvim-yarp'
 Plugin 'ncm2/ncm2-bufword'
 Plugin 'ncm2/ncm2-path'
 Plugin 'ncm2/ncm2-ultisnips'
+
+"### PHP LANG SERVER"
+Plugin 'roxma/LanguageServer-php-neovim',  {'do': 'composer install && composer run-script parse-stubs'}
+Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plugin 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
+Plugin 'junegunn/fzf'
 
 
 " All of your Plugins must be added before the following line
@@ -115,11 +124,10 @@ nmap <Leader>f <Plug>(easymotion-overwin-f)
 nmap <Leader>q :echo "noh"
 
 
-"PHP ACTOR
+"PHP ACTOR TODO
 autocmd FileType php setlocal omnifunc=phpactor#Complete
-nmap <C-]> :call phpactor#GotoDefinition()<CR>
-"ncm2"
 autocmd BufEnter * call ncm2#enable_for_buffer()
+"nmap <C-]> :call phpactor#GotoDefinition()<CR>
 set completeopt=noinsert,menuone,noselect
 inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
@@ -133,6 +141,11 @@ autocmd BufRead,BufNewFile *.txt setlocal spell
 autocmd FileType gitcommit setlocal spell
 
 
+"PHP LANGUAGE SERVER"
+set runtimepath+=~/.vim-plugins/LanguageClient-neovim
+let g:LanguageClient_serverCommands = {
+    \ 'php': ['tcp://127.0.0.1:4001'],
+    \ }
 
 "#### TAGS ####"
 set tags+=tags,tags.vendors
