@@ -1,7 +1,7 @@
-""pgugins"
-set nocompatible              " be iMproved, required
-filetype off                  " required
-" set the runtime path to include Vundle and initialize
+set nocompatible 
+
+"### VUNDLE ###"
+filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
   
@@ -12,11 +12,12 @@ Plugin 'vim-ruby/vim-ruby'
 "colorshemes"
 Plugin 'morhetz/gruvbox'
 Plugin 'Yggdroot/indentLine'
-"Plugin 'mhinz/vim-startify'
+
 "test pluggins
 Plugin 'tpope/vim-fugitive'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'easymotion/vim-easymotion'
+
 "search for files
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'slim-template/vim-slim'
@@ -26,27 +27,30 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'vim-airline/vim-airline'
 Plugin 'tpope/vim-surround'
 Plugin 'terryma/vim-multiple-cursors'
+
+"SNIPPETS
 Plugin 'honza/vim-snippets'
 Plugin 'SirVer/ultisnips'
-"linters"
+
+"LINTERS"
 Plugin 'w0rp/ale'
 
-"*************Autocomplete Plugins
-"Plugin 'Valloric/YouCompleteMe'
+"AUTOCOMPLETE
 Plugin 'phpactor/phpactor'
 Plugin 'phpactor/ncm2-phpactor'
 Plugin 'shawncplus/phpcomplete.vim'
-"ncm2"
 Plugin 'ncm2/ncm2'
 Plugin 'roxma/nvim-yarp'
 Plugin 'ncm2/ncm2-bufword'
 Plugin 'ncm2/ncm2-path'
+Plugin 'ncm2/ncm2-ultisnips'
+
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
 
-"params"
+"### VIM PARAMS ###"
 syntax on
 colorscheme gruvbox
 set background=dark
@@ -59,15 +63,16 @@ set expandtab
 set shiftwidth=4
 set softtabstop=4
 
-" tab size for not expanded files
 let g:indentLine_color_term = 239
 let g:indentLine_conceallevel = 2
 let g:indentLine_faster = 0
-let g:mapleader=','
 
+"### MAP ###"
+let g:mapleader=','
 let g:jsx_pragma_required = 0 
 
-" *** ale config
+"PLUGINS CONFIGURATION"
+"ale
 let g:ale_emit_conflict_warnings = 1
 let g:ale_fixers = {
       \   'javascript': ['eslint'],
@@ -89,6 +94,7 @@ highlight link ALEErrorSign todo
 
 
 let &colorcolumn=join(range(81,999),",")
+"ctl+p
 "disable node_modules for ctrlp
 set wildignore+=node_modules/**
 set wildignore+=*/node_modules/**
@@ -101,8 +107,6 @@ let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 let g:UltiSnipsEditSplit="vertical"
 
-"Snipets end ***********"
-
 "****************"
 let mapleader = "\<Space>"
 map <Leader>n :NERDTreeToggle<CR>
@@ -110,15 +114,18 @@ map <Leader>p :NERDTreeFind<cr>
 nmap <Leader>f <Plug>(easymotion-overwin-f)
 nmap <Leader>q :echo "noh"
 
-"*****************END MAPPING ************
 
+"PHP ACTOR
 autocmd FileType php setlocal omnifunc=phpactor#Complete
 nmap <C-]> :call phpactor#GotoDefinition()<CR>
 "ncm2"
 autocmd BufEnter * call ncm2#enable_for_buffer()
 set completeopt=noinsert,menuone,noselect
-"deoplete"
-"let g:deoplete#enable_at_startup = 1
+inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+
 
 "#### TAGS ####"
 set tags+=tags,tags.vendors
