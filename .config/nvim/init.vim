@@ -126,8 +126,8 @@ nmap <Leader>q :echo "noh"
 
 "PHP ACTOR TODO
 autocmd FileType php setlocal omnifunc=phpactor#Complete
+nmap <C-]> :call phpactor#GotoDefinition()<CR>
 autocmd BufEnter * call ncm2#enable_for_buffer()
-"nmap <C-]> :call phpactor#GotoDefinition()<CR>
 set completeopt=noinsert,menuone,noselect
 inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
