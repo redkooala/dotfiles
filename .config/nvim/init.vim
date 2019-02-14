@@ -19,7 +19,7 @@ Plugin 'jiangmiao/auto-pairs'
 Plugin 'easymotion/vim-easymotion'
 
 "search for files
-Plugin 'ctrlpvim/ctrlp.vim'
+"Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'slim-template/vim-slim'
 Plugin 'pangloss/vim-javascript' 
 Plugin 'mxw/vim-jsx' 
@@ -36,8 +36,8 @@ Plugin 'SirVer/ultisnips'
 Plugin 'w0rp/ale'
 
 "AUTOCOMPLETE TODO
-Plugin 'phpactor/phpactor'
-Plugin 'phpactor/ncm2-phpactor'
+"Plugin 'phpactor/phpactor'
+"Plugin 'phpactor/ncm2-phpactor'
 
 Plugin 'ncm2/ncm2'
 Plugin 'roxma/nvim-yarp'
@@ -52,7 +52,9 @@ Plugin 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': 'bash install.sh',
     \ }
-Plugin 'junegunn/fzf'
+Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'  }
+Plugin 'junegunn/fzf.vim'
+
 
 
 " All of your Plugins must be added before the following line
@@ -105,14 +107,14 @@ highlight link ALEErrorSign todo
 let &colorcolumn=join(range(81,999),",")
 "ctl+p
 "disable node_modules for ctrlp
-set wildignore+=node_modules/**
-set wildignore+=*/node_modules/**
-set wildignore+=public/**
-set wildignore+=*/tmp/*,*/log/*,*.so,*.swp,*.zip,moc_*.cpp,moc_*.h,ui_*.cpp,ui_*.h
+"set wildignore+=node_modules/**
+"set wildignore+=*/node_modules/**
+"set wildignore+=public/**
+"set wildignore+=*/tmp/*,*/log/*,*.so,*.swp,*.zip,moc_*.cpp,moc_*.h,ui_*.cpp,ui_*.h
 
 "#### SNIPET ####"
 let g:UltiSnipsExpandTrigger="<c-j>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpForwardTrigger="<c-n>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 let g:UltiSnipsEditSplit="vertical"
 
@@ -121,12 +123,13 @@ let mapleader = "\<Space>"
 map <Leader>n :NERDTreeToggle<CR>
 map <Leader>p :NERDTreeFind<cr>
 nmap <Leader>f <Plug>(easymotion-overwin-f)
-nmap <Leader>q :echo "noh"
 
+"##FZV"
+ nmap <C-p> :FZF<CR>
 
 "PHP ACTOR TODO
-autocmd FileType php setlocal omnifunc=phpactor#Complete
-nmap <C-]> :call phpactor#GotoDefinition()<CR>
+"autocmd FileType php setlocal omnifunc=phpactor#Complete
+"nmap <C-]> :call phpactor#GotoDefinition()<CR>
 autocmd BufEnter * call ncm2#enable_for_buffer()
 set completeopt=noinsert,menuone,noselect
 inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
@@ -146,6 +149,14 @@ set runtimepath+=~/.vim-plugins/LanguageClient-neovim
 let g:LanguageClient_serverCommands = {
     \ 'php': ['tcp://127.0.0.1:4001'],
     \ }
+nnoremap <C-m> :call LanguageClient_contextMenu()<CR>
+nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+
+
+"### My binds"
+nnoremap <silent> <C-j> :noh<CR>
 
 "#### TAGS ####"
 set tags+=tags,tags.vendors
