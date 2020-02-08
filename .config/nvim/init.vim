@@ -26,6 +26,7 @@ Plugin 'mxw/vim-jsx'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'vim-airline/vim-airline'
 Plugin 'tpope/vim-surround'
+Plugin 'fatih/vim-go'
 Plugin 'terryma/vim-multiple-cursors'
 
 "SNIPPETS
@@ -35,26 +36,13 @@ Plugin 'SirVer/ultisnips'
 "LINTERS"
 Plugin 'w0rp/ale'
 
-"AUTOCOMPLETE TODO
-"Plugin 'phpactor/phpactor'
-"Plugin 'phpactor/ncm2-phpactor'
-
-Plugin 'ncm2/ncm2'
-Plugin 'roxma/nvim-yarp'
-Plugin 'ncm2/ncm2-bufword'
-Plugin 'ncm2/ncm2-path'
-Plugin 'ncm2/ncm2-ultisnips'
-
-"### PHP LANG SERVER"
-Plugin 'roxma/LanguageServer-php-neovim',  {'do': 'composer install && composer run-script parse-stubs'}
+"AUTOCOMPLETE
 Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plugin 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
+
+
+"FUZZU SEARCH
 Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'  }
 Plugin 'junegunn/fzf.vim'
-
 
 
 " All of your Plugins must be added before the following line
@@ -102,15 +90,7 @@ autocmd BufEnter *.h ALEDisable
 
 highlight link ALEWarningSign todo
 highlight link ALEErrorSign todo
-
-
 let &colorcolumn=join(range(81,999),",")
-"ctl+p
-"disable node_modules for ctrlp
-"set wildignore+=node_modules/**
-"set wildignore+=*/node_modules/**
-"set wildignore+=public/**
-"set wildignore+=*/tmp/*,*/log/*,*.so,*.swp,*.zip,moc_*.cpp,moc_*.h,ui_*.cpp,ui_*.h
 
 "#### SNIPET ####"
 let g:UltiSnipsExpandTrigger="<c-j>"
@@ -124,13 +104,9 @@ map <Leader>n :NERDTreeToggle<CR>
 map <Leader>p :NERDTreeFind<cr>
 nmap <Leader>f <Plug>(easymotion-overwin-f)
 
-"##FZV"
+"##FZV CONFIGURATION
  nmap <C-p> :FZF<CR>
 
-"PHP ACTOR TODO
-"autocmd FileType php setlocal omnifunc=phpactor#Complete
-"nmap <C-]> :call phpactor#GotoDefinition()<CR>
-autocmd BufEnter * call ncm2#enable_for_buffer()
 set completeopt=noinsert,menuone,noselect
 inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
@@ -144,19 +120,17 @@ autocmd BufRead,BufNewFile *.txt setlocal spell
 autocmd FileType gitcommit setlocal spell
 
 
-"PHP LANGUAGE SERVER"
-set runtimepath+=~/.vim-plugins/LanguageClient-neovim
-let g:LanguageClient_serverCommands = {
-    \ 'php': ['tcp://127.0.0.1:4001'],
-    \ }
-nnoremap <C-m> :call LanguageClient_contextMenu()<CR>
-nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
-nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
-nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
-
 
 "### My binds"
 nnoremap <silent> <C-j> :noh<CR>
 
 "#### TAGS ####"
 set tags+=tags,tags.vendors
+
+"DEOPLETE"
+let g:deoplete#enable_at_startup = 1
+
+
+
+"GIT
+nmap <C-g> :Gblame<CR>

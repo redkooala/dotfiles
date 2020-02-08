@@ -16,5 +16,11 @@ gsettings set org.gnome.desktop.interface cursor-blink false
 alias front_test='make restart && make test without_debug=1 with_assets_build=0 with_apidoc_build=0 test_frontend_suite=1 fail_exit=1'
 
 alias php_server='php ~/.config/composer/vendor/bin/php-language-server.php --tcp-server=127.0.0.1:4001'
+alias vconfig='vim ~/.config/nvim/init.vim'
+
+
+#GO LANG
+export GOPATH=$HOME/dev/go
+export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
