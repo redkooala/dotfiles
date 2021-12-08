@@ -1,1 +1,1 @@
-is very bad, dot't see please
+is very good, see please
